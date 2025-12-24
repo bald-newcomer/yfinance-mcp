@@ -1,0 +1,20 @@
+{
+  "id": "complexity_dept",
+  "name": "复杂度评估部门模板",
+  "description": "基于产品可理解性、收入来源、技术复杂度、客户权利，评估该公司主营产品的易理解程度。",
+  "template": "llm.md",
+  "variables": [
+    "title",
+    "ts_code"
+  ],
+  "max_length": 4000,
+  "required_context": [
+    "ts_code"
+  ],
+  "version": "1.0.0",
+  "metadata": {
+    "label": "reasoned_quality_guard",
+    "notes": "引导链式推理、事实核对与示例锚定。"
+  },
+  "activate": true
+}
