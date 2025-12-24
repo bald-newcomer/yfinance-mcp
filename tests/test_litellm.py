@@ -1,8 +1,3 @@
-from typing import get_args
-
-from yfinance.const import SECTOR_INDUSTY_MAPPINGs
-from yfmcp.types import Sector
-
 import yfinance as yf
 import litellm
 from aegis.templates.template import TemplateRegistry
@@ -24,4 +19,4 @@ def test_yf() -> None:
     import pdb; pdb.set_trace()
 
 def test_template() -> None:
-    TemplateRegistry.get()
+    TemplateRegistry.get("complexity_dept")

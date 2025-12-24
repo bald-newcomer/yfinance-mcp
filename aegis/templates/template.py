@@ -81,7 +81,9 @@ class TemplateRegistry:
         cls,
         template_id: str,
     ) -> Optional[PromptTemplate]:
+        import pdb
 
+        pdb.set_trace()
         return cls._templates.get(template_id)
 
     @classmethod
@@ -99,7 +101,7 @@ class TemplateRegistry:
     def load(cls, data: Dict) -> None:
         """Load templates from JSON string."""
 
-        template_id = data.get("template_id")
+        template_id = data.get("id")
 
         if not template_id:
             raise ValueError("template_id is not empty")
@@ -128,7 +130,9 @@ class TemplateRegistry:
 DEFAULT_TEMPLATES: Dict[str, Dict[str, Any]] = {}
 
 # 模板加载路径
-EXTERNAL_TEMPLATE_DIR = Path(__file__).resolve()
+EXTERNAL_TEMPLATE_DIR = Path(__file__).resolve().parents[0]
+
+EXCLUDE_PATTERNS = ["__pycache__", ".git", ".idea", ".vscode", "node_modules"]
 
 
 def load_template(
@@ -141,23 +145,37 @@ def load_template(
         return 0
 
     loaded = 0
-    for file_path in sorted(directory_path.glob("*.json")):
+
+    for folder in directory_path.iterdir():
+        if not folder.exists() or not folder.is_dir():
+            continue
+        if folder.name in EXCLUDE_PATTERNS:
+            continue
+
+        template_json_path = folder / f"{folder.name}.json"
+        template_llm_path = folder / f"{folder.name}.md"
         try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                payload = json.load(f)
+            with open(template_json_path, "r", encoding="utf-8") as f_json:
+                payload = json.load(f_json)
+            with open(template_llm_path, "r", encoding="utf-8") as f_llm:
+                llm = f_llm.read()
+                payload["template"] = llm
         # todo 还需要从llm.md中加载模板具体内容
         except json.JSONDecodeError as exc:
-            logging.warning("提示模板配置文件 %s 解析失败：%s", file_path, exc)
+            logging.warning("提示模板配置文件 %s 解析失败：%s", template_json_path, exc)
             continue
         if not payload:
             continue
         try:
+            import pdb
+
+            pdb.set_trace()
             TemplateRegistry.load(payload)
             loaded += len(payload)
         except Exception as exc:
             logging.warning(
                 "注册提示模板配置 %s 失败：%s",
-                file_path,
+                template_json_path,
                 exc,
             )
     return loaded
@@ -165,7 +183,9 @@ def load_template(
 
 def register_default_templates() -> None:
     """Load templates from configuration files, falling back to inline defaults if needed."""
+    import pdb
 
+    pdb.set_trace()
     loaded = load_template()
     if loaded == 0:
         logging.error(
