@@ -160,7 +160,6 @@ def load_template(
             with open(template_llm_path, "r", encoding="utf-8") as f_llm:
                 llm = f_llm.read()
                 payload["template"] = llm
-        # todo 还需要从llm.md中加载模板具体内容
         except json.JSONDecodeError as exc:
             logging.warning("提示模板配置文件 %s 解析失败：%s", template_json_path, exc)
             continue
