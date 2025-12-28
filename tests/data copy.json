@@ -1,0 +1,272 @@
+{'model': 'deepseek/deepseek-chat', 'messages': [
+        {'role': 'system', 'content': '你是一个多智能体防御型投资分析系统中的分部决策者，需要根据提供的结构化信息给出评估意见。'
+        },
+        {'role': 'user', 'content': '请分析一下宏辉果蔬（股票代码：603336）'
+        },
+        {'content': '我来为您分析宏辉果蔬（603336）。首先让我获取该公司的基本信息、财务数据和最新动态。', 'role': 'assistant', 'tool_calls': [
+                {'index': 0, 'function': {'arguments': '{
+                            "symbol": "603336.SS"
+                        }', 'name': 'get_ticker_info'
+                    }, 'id': 'call_00_V7oLIwckMlrDsdUpBm1FgkM8', 'type': 'function'
+                }
+            ], 'function_call': None, 'provider_specific_fields': None
+        },
+        {'role': 'tool', 'tool_call_id': 'call_00_V7oLIwckMlrDsdUpBm1FgkM8', 'name': 'get_ticker_info', 'content': '{
+                "address1": "No. 13, Yujin Middle Road",
+                "address2": "Longhu District",
+                "city": "Shantou",
+                "zip": "515041",
+                "country": "China",
+                "phone": "86 754 8880 2291",
+                "fax": "86 754 8881 0112",
+                "website": "https://www.greatsunfoods.com",
+                "industry": "Farm Products",
+                "industryKey": "farm-products",
+                "industryDisp": "Farm Products",
+                "sector": "Consumer Defensive",
+                "sectorKey": "consumer-defensive",
+                "sectorDisp": "Consumer Defensive",
+                "longBusinessSummary": "Great-Sun Foods Co., Ltd. engages in the fruit and vegetable business in China and internationally. The company engages in the acquisition, warehousing, and processing and distribution of agricultural products, such as fruits and vegetables. Its products include fruits, vegetables, finished products, frozen meat, quick-frozen food, and edible oil. The company was founded in 1992 and is based in Shantou, China.",
+                "fullTimeEmployees": 962,
+                "companyOfficers": [
+                    {
+                        "maxAge": 1,
+                        "name": "Mr. Ling  Huang",
+                        "age": 32,
+                        "title": "GM & Chairman",
+                        "yearBorn": 1992,
+                        "exercisedValue": 0,
+                        "unexercisedValue": 0
+                    },
+                    {
+                        "maxAge": 1,
+                        "name": "Ms. Laifeng  Chen",
+                        "age": 38,
+                        "title": "Chief Financial Officer",
+                        "yearBorn": 1986,
+                        "exercisedValue": 0,
+                        "unexercisedValue": 0
+                    },
+                    {
+                        "maxAge": 1,
+                        "name": "Mr. Jian Long  Wang",
+                        "age": 47,
+                        "title": "Deputy GM & Director",
+                        "yearBorn": 1977,
+                        "exercisedValue": 0,
+                        "unexercisedValue": 0
+                    },
+                    {
+                        "maxAge": 1,
+                        "name": "Ms. Yanjuan  Wu",
+                        "age": 29,
+                        "title": "Deputy GM, Secretary of the Board & Director",
+                        "yearBorn": 1995,
+                        "exercisedValue": 0,
+                        "unexercisedValue": 0
+                    },
+                    {
+                        "maxAge": 1,
+                        "name": "Mr. Jianmin  Wang",
+                        "age": 41,
+                        "title": "Deputy General Manager",
+                        "yearBorn": 1983,
+                        "exercisedValue": 0,
+                        "unexercisedValue": 0
+                    },
+                    {
+                        "maxAge": 1,
+                        "name": "Ms. Jie Shan  Lin",
+                        "age": 31,
+                        "title": "Accounting Supervisor & Head of Accounting Agency",
+                        "yearBorn": 1993,
+                        "exercisedValue": 0,
+                        "unexercisedValue": 0
+                    }
+                ],
+                "executiveTeam": [],
+                "maxAge": 86400,
+                "priceHint": 2,
+                "previousClose": 8.5,
+                "open": 8.52,
+                "dayLow": 8.45,
+                "dayHigh": 8.6,
+                "regularMarketPreviousClose": 8.5,
+                "regularMarketOpen": 8.52,
+                "regularMarketDayLow": 8.45,
+                "regularMarketDayHigh": 8.6,
+                "dividendRate": 0.01,
+                "dividendYield": 0.06,
+                "exDividendDate": "2025-11-25 08:00:00",
+                "payoutRatio": 0.0,
+                "fiveYearAvgDividendYield": 0.8,
+                "beta": 0.477,
+                "trailingPE": 423.0,
+                "volume": 5444241,
+                "regularMarketVolume": 5444241,
+                "averageVolume": 12994362,
+                "averageVolume10days": 7792149,
+                "averageDailyVolume10Day": 7792149,
+                "bid": 8.45,
+                "ask": 8.46,
+                "bidSize": 0,
+                "askSize": 0,
+                "marketCap": 5149762560,
+                "fiftyTwoWeekLow": 3.81,
+                "fiftyTwoWeekHigh": 10.76,
+                "allTimeHigh": 18.200647,
+                "allTimeLow": 2.78,
+                "priceToSalesTrailing12Months": 4.8722296,
+                "fiftyDayAverage": 9.2964,
+                "twoHundredDayAverage": 7.64895,
+                "trailingAnnualDividendRate": 0.005,
+                "trailingAnnualDividendYield": 0.00058823527,
+                "currency": "CNY",
+                "tradeable": false,
+                "enterpriseValue": 5096069632,
+                "profitMargins": 0.00915,
+                "floatShares": 342873120,
+                "sharesOutstanding": 608718945,
+                "heldPercentInsiders": 0.51042,
+                "heldPercentInstitutions": 0.01199,
+                "impliedSharesOutstanding": 608718945,
+                "bookValue": 2.347,
+                "priceToBook": 3.6046019,
+                "lastFiscalYearEnd": "2024-12-31 08:00:00",
+                "nextFiscalYearEnd": "2025-12-31 08:00:00",
+                "mostRecentQuarter": "2025-09-30 08:00:00",
+                "earningsQuarterlyGrowth": -0.439,
+                "netIncomeToCommon": 9666692,
+                "trailingEps": 0.02,
+                "lastSplitFactor": "1.32:1",
+                "lastSplitDate": "2023-06-20 08:00:00",
+                "enterpriseToRevenue": 4.821,
+                "enterpriseToEbitda": 72.661,
+                "52WeekChange": 0.96287704,
+                "SandP52WeekChange": 0.17354333,
+                "lastDividendValue": 0.005,
+                "lastDividendDate": "2025-11-25 08:00:00",
+                "quoteType": "EQUITY",
+                "currentPrice": 8.46,
+                "recommendationKey": "none",
+                "totalCash": 359804896,
+                "totalCashPerShare": 0.591,
+                "ebitda": 70134608,
+                "totalDebt": 303940000,
+                "quickRatio": 1.615,
+                "currentRatio": 2.133,
+                "totalRevenue": 1056962176,
+                "debtToEquity": 21.245,
+                "revenuePerShare": 1.998,
+                "returnOnAssets": 0.013040001,
+                "returnOnEquity": 0.00836,
+                "grossProfits": 94887368,
+                "freeCashflow": 397410976,
+                "operatingCashflow": 181817856,
+                "earningsGrowth": -0.367,
+                "revenueGrowth": -0.197,
+                "grossMargins": 0.089770004,
+                "ebitdaMargins": 0.066350006,
+                "operatingMargins": 0.0499,
+                "financialCurrency": "CNY",
+                "symbol": "603336.SS",
+                "language": "en-US",
+                "region": "US",
+                "typeDisp": "Equity",
+                "quoteSourceName": "Delayed Quote",
+                "triggerable": false,
+                "customPriceAlertConfidence": "LOW",
+                "hasPrePostMarketData": false,
+                "firstTradeDateMilliseconds": 1480037400000,
+                "regularMarketChange": -0.03999996,
+                "regularMarketDayRange": "8.45 - 8.6",
+                "fullExchangeName": "Shanghai",
+                "averageDailyVolume3Month": 12994362,
+                "fiftyTwoWeekLowChange": 4.65,
+                "fiftyTwoWeekLowChangePercent": 1.2204725,
+                "fiftyTwoWeekRange": "3.81 - 10.76",
+                "fiftyTwoWeekHighChange": -2.3000002,
+                "fiftyTwoWeekHighChangePercent": -0.21375465,
+                "fiftyTwoWeekChangePercent": 96.287704,
+                "earningsTimestampStart": "2021-04-23 18:59:00",
+                "earningsTimestampEnd": "2021-04-23 18:59:00",
+                "epsTrailingTwelveMonths": 0.02,
+                "marketState": "CLOSED",
+                "exchangeTimezoneShortName": "CST",
+                "gmtOffSetMilliseconds": 28800000,
+                "esgPopulated": false,
+                "regularMarketChangePercent": -0.4705878,
+                "regularMarketPrice": 8.46,
+                "fiftyDayAverageChange": -0.83640003,
+                "fiftyDayAverageChangePercent": -0.08997031,
+                "twoHundredDayAverageChange": 0.81104994,
+                "twoHundredDayAverageChangePercent": 0.10603415,
+                "sourceInterval": 15,
+                "exchangeDataDelayedBy": 15,
+                "cryptoTradeable": false,
+                "corporateActions": [],
+                "regularMarketTime": "2025-12-26 15:00:02",
+                "exchange": "SHH",
+                "messageBoardId": "finmb_131701906",
+                "exchangeTimezoneName": "Asia/Shanghai",
+                "market": "cn_market",
+                "shortName": "GREAT-SUN FOODS CO LTD",
+                "longName": "Great-Sun Foods Co., Ltd.",
+                "trailingPegRatio": null
+            }'
+        }
+    ], 'api_key': 'sk-7399448825f04cbeb8bce541f8cbcdcb', 'tools': [
+        {'type': 'function', 'function': {'name': 'get_ticker_info', 'description': 'Retrieve stock data including company info, financials, trading metrics and governance data.', 'parameters': {'properties': {'symbol': {'description': 'The stock symbol', 'title': 'Symbol', 'type': 'string'
+                        }
+                    }, 'required': ['symbol'
+                    ], 'title': 'get_ticker_infoArguments', 'type': 'object'
+                }
+            }
+        },
+        {'type': 'function', 'function': {'name': 'get_ticker_news', 'description': 'Fetches recent news articles related to a specific stock symbol with title, content, and source details.', 'parameters': {'properties': {'symbol': {'description': 'The stock symbol', 'title': 'Symbol', 'type': 'string'
+                        }
+                    }, 'required': ['symbol'
+                    ], 'title': 'get_ticker_newsArguments', 'type': 'object'
+                }
+            }
+        },
+        {'type': 'function', 'function': {'name': 'search', 'description': 'Fetches and organizes search results from Yahoo Finance, including stock quotes and news articles.', 'parameters': {'properties': {'query': {'description': 'The search query (ticker symbol or company name)', 'title': 'Query', 'type': 'string'
+                        }, 'search_type': {'description': 'Type of search results to retrieve', 'enum': ['all', 'quotes', 'news'
+                            ], 'title': 'Search Type', 'type': 'string'
+                        }
+                    }, 'required': ['query', 'search_type'
+                    ], 'title': 'searchArguments', 'type': 'object'
+                }
+            }
+        },
+        {'type': 'function', 'function': {'name': 'get_top', 'description': 'Get top entities (ETFs, mutual funds, companies, growth companies, or performing companies) in a sector.', 'parameters': {'properties': {'sector': {'description': 'The sector to get', 'enum': ['Basic Materials', 'Communication Services', 'Consumer Cyclical', 'Consumer Defensive', 'Energy', 'Financial Services', 'Healthcare', 'Industrials', 'Real Estate', 'Technology', 'Utilities'
+                            ], 'title': 'Sector', 'type': 'string'
+                        }, 'top_type': {'description': 'Type of top companies to retrieve', 'enum': ['top_etfs', 'top_mutual_funds', 'top_companies', 'top_growth_companies', 'top_performing_companies'
+                            ], 'title': 'Top Type', 'type': 'string'
+                        }, 'top_n': {'default': 10, 'description': 'Number of top entities to retrieve (limit the results)', 'title': 'Top N', 'type': 'integer'
+                        }
+                    }, 'required': ['sector', 'top_type'
+                    ], 'title': 'get_topArguments', 'type': 'object'
+                }
+            }
+        },
+        {'type': 'function', 'function': {'name': 'get_price_history', 'description': 'Fetch historical price data for a given stock symbol over a specified period and interval.', 'parameters': {'properties': {'symbol': {'description': 'The stock symbol', 'title': 'Symbol', 'type': 'string'
+                        }, 'period': {'default': '1mo', 'description': "Time period to retrieve data for (e.g. '1d', '1mo', '1y').", 'enum': ['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'
+                            ], 'title': 'Period', 'type': 'string'
+                        }, 'interval': {'default': '1d', 'description': "Data interval frequency (e.g. '1d', '1h', '1m')", 'enum': ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo'
+                            ], 'title': 'Interval', 'type': 'string'
+                        }, 'chart_type': {'anyOf': [
+                                {'enum': ['price_volume', 'vwap', 'volume_profile'
+                                    ], 'type': 'string'
+                                },
+                                {'type': 'null'
+                                }
+                            ], 'default': None, 'description': "Type of chart: 'price_volume' for candlestick with volume bars, 'vwap' for Volume Weighted Average Price, or 'volume_profile' for volume distribution by price level", 'title': 'Chart Type'
+                        }
+                    }, 'required': ['symbol'
+                    ], 'title': 'get_price_historyArguments', 'type': 'object'
+                }
+            }
+        }
+    ], 'tool_choice': 'auto'
+}
