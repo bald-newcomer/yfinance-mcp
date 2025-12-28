@@ -21,18 +21,8 @@ load_dotenv(find_dotenv(), override=True)
 
 # Constants
 DEFAULT_IMAGE_RESPONSE = "Image generated successfully."
-SYSTEM_MESSAGE_CONTENT = (
-    "You are a helpful Yahoo Finance assistant. "
-    "When tools return images, they will be automatically displayed to the user. "
-)
-WELCOME_MESSAGE = (
-    "Welcome to Yahoo Finance Chatbot! "
-    "I can help you query stock information, news, and historical prices.\n\n"
-    "Try asking me:\n"
-    "- Get AAPL stock information\n"
-    "- Recent TSLA news\n"
-    "- Show NVDA price history for the past month"
-)
+SYSTEM_MESSAGE_CONTENT = "你是一个多智能体防御型投资分析系统中的分部决策者，需要根据提供的结构化信息给出评估意见。"
+WELCOME_MESSAGE = "欢迎使用龟龟投资助手! "
 
 # Determine which client to use based on environment variables
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -104,7 +94,6 @@ async def chat_completion(
     if tools:
         kwargs["tools"] = tools
         kwargs["tool_choice"] = "auto"
-
     if USE_LITELLM:
         return await litellm.acompletion(**kwargs)
     else:
@@ -189,7 +178,7 @@ def extract_tool_result(
     return tool_result, images
 
 
-def convert_mcp_tools_to_openai_format(
+def get_mcp_tools(
     tools_list: ListToolsResult,
 ) -> list[dict[str, Any]]:
     """Convert MCP tools to OpenAI tool format."""
@@ -231,8 +220,7 @@ async def start():
         session = await mcp_context.__aenter__()
 
         tools_list = await session.list_tools()
-        tools = convert_mcp_tools_to_openai_format(tools_list)
-
+        tools = get_mcp_tools(tools_list)
         # Store MCP session and context manager
         cl.user_session.set("mcp_session", session)
         cl.user_session.set("mcp_context", mcp_context)
@@ -310,14 +298,13 @@ async def main(message: cl.Message):
                 )
 
             # Get final response after tool calls
-            final_response = await chat_completion2(messages)
+            final_response = await chat_completion(messages, tools)
             final_message = final_response.choices[0].message.content
             messages.append({"role": "assistant", "content": final_message})
         else:
             final_message = assistant_message.content
             if not final_message:
                 final_message = "Sorry, I couldn't understand your question."
-
         # Send response to user with images
         await cl.Message(
             content=final_message, elements=all_images if all_images else None

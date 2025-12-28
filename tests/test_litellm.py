@@ -1,6 +1,11 @@
 import yfinance as yf
 import litellm
+
 from aegis.templates.template import TemplateRegistry
+from aegis.templates.complexity_dept.complexity_agent import (
+    complexity_agent,
+    complexity_dependencies,
+)
 
 
 # uv run pytest tests/test_litellm.py::test_llm -v
@@ -16,12 +21,25 @@ def test_llm() -> None:
 
 
 def test_yf() -> None:
-    ticker = yf.Ticker('AAPL')
+    ticker = yf.Ticker("AAPL")
     info = ticker.info
-    import pdb;
+    import pdb
+
     pdb.set_trace()
 
 
 # uv run pytest tests/test_litellm.py::test_template -v
 def test_template() -> None:
     TemplateRegistry.get("complexity_dept")
+
+
+# 此处需要传入具体的ts_code，需要有专门具体的agent去读取意图，再分发给这个组件
+# 后处理需要将结论输出一个结果描述，发送给用户
+# uv run pytest tests/test_litellm.py::test_complexity_agent -v
+def test_complexity_agent() -> None:
+
+    result = complexity_agent.run_sync(
+        "请分析一下宏辉果蔬（股票代码：603336）",
+        deps=complexity_dependencies(ts_code="603336"),
+    )
+    print(result.output)

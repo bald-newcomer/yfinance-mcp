@@ -137,3 +137,6 @@ dmypy.json
 .chainlit/
 .chainlit.md
 .claude/
+
+# mac
+**/.DS_Store

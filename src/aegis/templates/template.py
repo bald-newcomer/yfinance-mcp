@@ -21,7 +21,7 @@ class PromptTemplate:
     template: str
     variables: List[str]
     # 最长字符串限制
-    max_length: int = 4000
+    max_length: int = 10000
     # 需要的上下文内容
     required_context: List[str] = None
     validation_rules: List[str] = None
@@ -52,11 +52,14 @@ class PromptTemplate:
     def format(self, context: Dict[str, Any]) -> str:
         """Format template with provided context."""
         # Validate required context
+
         if self.required_context:
-            missing = [f for f in self.required_context if f not in context]
+            missing = [
+                f for f in self.required_context if not getattr(context, f, None)
+            ]
             if missing:
                 raise ValueError(f"Missing required context: {', '.join(missing)}")
-        result = self.template.format(**self.required_context)
+        result = self.template.format(**vars(context))
         if len(result) > max(self.max_length, 3):
             result = result[: self.max_length - 3] + "..."
         return result
@@ -81,9 +84,6 @@ class TemplateRegistry:
         cls,
         template_id: str,
     ) -> Optional[PromptTemplate]:
-        import pdb
-
-        pdb.set_trace()
         return cls._templates.get(template_id)
 
     @classmethod
@@ -143,15 +143,12 @@ def load_template(
     directory_path = Path(directory)
     if not directory_path.exists() or not directory_path.is_dir():
         return 0
-
     loaded = 0
-
     for folder in directory_path.iterdir():
         if not folder.exists() or not folder.is_dir():
             continue
         if folder.name in EXCLUDE_PATTERNS:
             continue
-
         template_json_path = folder / f"{folder.name}.json"
         template_llm_path = folder / f"{folder.name}.md"
         try:
@@ -166,9 +163,6 @@ def load_template(
         if not payload:
             continue
         try:
-            import pdb
-
-            pdb.set_trace()
             TemplateRegistry.load(payload)
             loaded += len(payload)
         except Exception as exc:
@@ -182,9 +176,6 @@ def load_template(
 
 def register_default_templates() -> None:
     """Load templates from configuration files, falling back to inline defaults if needed."""
-    import pdb
-
-    pdb.set_trace()
     loaded = load_template()
     if loaded == 0:
         logging.error(
