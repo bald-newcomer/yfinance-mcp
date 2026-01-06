@@ -2,7 +2,6 @@ from pydantic_ai import Agent, RunContext
 from aegis.templates.agent_base import Dependencies, Output
 from dataclasses import dataclass
 from aegis.templates.template import TemplateRegistry
-from demo import get_mcp_tools
 from pydantic_ai.toolsets.fastmcp import FastMCPToolset
 from yfmcp.server import mcp
 
@@ -31,6 +30,10 @@ class complexity_output(Output):
     summary: str
     signals: list[signal]
     risks: list[risk]
+
+import os
+
+os.environ["DEEPSEEK_API_KEY"] = "sk-7399448825f04cbeb8bce541f8cbcdcb"
 
 
 complexity_agent = Agent(

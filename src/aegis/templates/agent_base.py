@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Mapping
 from abc import ABC, abstractmethod
-
+from pydantic import BaseModel, ConfigDict
 
 class AgentAction(str, Enum):
     PASS = "PASS"
@@ -38,13 +38,13 @@ class AgentBase:
     #     raise NotImplementedError
 
 
-class Output(ABC):
+class Output(BaseModel):
     """Agent 响应体"""
 
 
-class Dependencies(ABC):
+class Dependencies(BaseModel):
     """Agent 依赖的参数"""
-
+    ts_code: str
     # @abstractmethod
     # def toDict(self, amount: float, currency: str) -> str:
     #     """支付方法，必须返回交易ID"""

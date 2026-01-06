@@ -6,6 +6,7 @@ from aegis.templates.complexity_dept.complexity_agent import (
     complexity_agent,
     complexity_dependencies,
 )
+from aegis.pre_agent import pre_agent, post_agent
 
 
 # uv run pytest tests/test_litellm.py::test_llm -v
@@ -37,9 +38,19 @@ def test_template() -> None:
 # 后处理需要将结论输出一个结果描述，发送给用户
 # uv run pytest tests/test_litellm.py::test_complexity_agent -v
 def test_complexity_agent() -> None:
+    user_promot = "请分析一下宏辉果蔬（股票代码：603336）"
+    pre_result = pre_agent.run_sync(user_promot)
 
     result = complexity_agent.run_sync(
-        "请分析一下宏辉果蔬（股票代码：603336）",
-        deps=complexity_dependencies(ts_code="603336"),
+        user_promot,
+        deps=pre_result.output,
     )
     print(result.output)
+    post_result = post_agent.run_sync(
+        user_promot,
+        deps=result.output,
+    )
+    print(post_result.output)
+    import pdb
+
+    pdb.set_trace()
